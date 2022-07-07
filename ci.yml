@@ -15,7 +15,7 @@ Profiles:
     name : dev
     tool : build_submitter
     env : DECK_CENTOS6U3_K3
-    command : sh ipipe_build.sh;;mv target output
+    command : sh ipipe_build.sh;mv target output
     release : true
 
   - profile:
