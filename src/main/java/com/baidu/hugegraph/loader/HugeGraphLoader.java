@@ -90,6 +90,9 @@ public final class HugeGraphLoader {
             return;
         }
         boolean isSuccess = loader.load();
+
+        // 执行laoder的清理操作
+        loader.shutdown();
         if (!isSuccess) {
             System.exit(1);
         }
@@ -107,7 +110,9 @@ public final class HugeGraphLoader {
         this.context = new LoadContext(options);
         this.mapping = mapping;
         this.manager = new TaskManager(this.context);
-        this.addShutdownHook();
+
+        // 更改为手动关闭loader
+        // this.addShutdownHook();
     }
 
     private void addShutdownHook() {
@@ -162,6 +167,10 @@ public final class HugeGraphLoader {
 
         // 任务执行成功
         return true;
+    }
+
+    public void shutdown() {
+        this.stopThenShutdown();
     }
 
     private void clearAllDataIfNeeded() {

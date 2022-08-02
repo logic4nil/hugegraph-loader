@@ -51,7 +51,7 @@ public final class LoadContext {
     private final LoadOptions options;
     private final LoadSummary summary;
     // The old progress just used to read
-    private final LoadProgress oldProgress;
+    private LoadProgress oldProgress;
     private final LoadProgress newProgress;
     // Each input mapping corresponds to a FailLogger
     private final Map<String, FailLogger> loggers;
@@ -107,6 +107,10 @@ public final class LoadContext {
 
     public LoadProgress oldProgress() {
         return this.oldProgress;
+    }
+
+    public void oldProgress(LoadProgress progress) {
+        this.oldProgress = progress;
     }
 
     public LoadProgress newProgress() {
